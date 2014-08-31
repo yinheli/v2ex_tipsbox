@@ -13,6 +13,7 @@
             }
             var item = $(this).parents('.cell').clone();
             item.find('.fr').remove();
+            item.find('.reply_content img').css({'max-width':'400px'});
             replys[name].push(item);
         });
 
