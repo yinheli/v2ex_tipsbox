@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "v2ex tips box",  
+  "version": "1.0.0",  
+  "description": "v2ex reply box tips box",
+  "permissions":[
+  	"*://*.v2ex.com/*"
+  ],
+  "content_scripts": [
+  	{
+      "matches": ["*://*.v2ex.com/*"],
+      "js": ["js/jquery.js","js/tips.js"],
+      "run_at":"document_end"
+    }
+  ]
+}
