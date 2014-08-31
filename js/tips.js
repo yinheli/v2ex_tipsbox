@@ -6,7 +6,7 @@
 
         var replys = {};
 
-        $('.cell strong a.dark').each(function(i) {
+        $('.cell strong a.dark').each(function() {
             var name = $(this).text();
             if (!replys[name]) {
                 replys[name] = new Array();
@@ -41,13 +41,23 @@
                 $(this).hover(
                     function(event) {
                         sbox = $('<div class="sbox box" style="display: none; width: 520px; position: absolute; border: 1px solid #ccc; box-shadow: 0pt 1px 2px rgba(0, 0, 0, 0.18) outset"></div>');
+                        var id = $(this).parents('.cell').attr('id');
+                        var count = 0;
                         for(var i = context.length-1; i >= 0; i--) {
-                            sbox.append(context[i]);
+                            var item = context[i];
+                            var itemId = item.attr('id');
+                            if (id > itemId) {
+                                sbox.append(context[i]);
+                                count++;
+                            }
                         }
-                        sbox.css({top:event.pageY + 10, left:event.pageX + 20});
-                        $('body').append(sbox);
-                        sbox.fadeIn(200);
-
+                        if (count > 0) {
+                            sbox.css({top:event.pageY + 10, left:event.pageX + 20});
+                            $('body').append(sbox);
+                            sbox.fadeIn(200);
+                        } else {
+                            sbox = null;
+                        }
                     },
 
                     function(event) {
